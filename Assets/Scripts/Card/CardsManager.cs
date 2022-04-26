@@ -18,6 +18,8 @@ public class CardsManager : MonoBehaviour
 
     private List<Card> cardsOnTable = new List<Card>();
     private List<Card> selectedCards = new List<Card>();
+    private Card currentAction = null;
+
     void Start()
     {
         if (instance)
@@ -78,6 +80,21 @@ public class CardsManager : MonoBehaviour
             card.ClearLight();
 
         selectedCards.Clear();
+    }
+
+    public bool IsActionHappening()
+    {
+        return currentAction != null;
+    }
+
+    public void RegisterAction(Card card)
+    {
+        if (IsActionHappening()) {
+            Debug.LogError("There is already an action in course");
+            return;
+        }
+
+        currentAction = card;
     }
 
     public void AddSelection(Card card)

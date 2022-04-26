@@ -5,7 +5,8 @@ using UnityEngine;
 public class EffectSettings : MonoBehaviour
 {
     [SerializeField]
-    private bool repeat = false;
+    private ActionType actionType = default;
+    public ActionType ActionType => actionType;
 
     public int Verify() {
         CardEffect[] effects = GetComponents<CardEffect>();
@@ -31,10 +32,6 @@ public class EffectSettings : MonoBehaviour
         CardEffect[] effects = GetComponents<CardEffect>();
         foreach (CardEffect effect in effects) {
             effect.Use();
-        }
-
-        if (repeat && Verify(effects) >= 0) {
-            Use();
         }
     }
 }

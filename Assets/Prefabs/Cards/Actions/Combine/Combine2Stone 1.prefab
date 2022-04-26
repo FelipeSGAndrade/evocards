@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5423892524854776306}
   - component: {fileID: 3538058939925361090}
   m_Layer: 0
-  m_Name: UseStoneOnStone
+  m_Name: Combine2Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e64066ce59b661e4c93b3b1185610276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  repeat: 0
+  actionType: 2
 --- !u!114 &5423892524854776306
 MonoBehaviour:
   m_ObjectHideFlags: 0

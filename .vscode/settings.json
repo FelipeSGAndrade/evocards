@@ -51,6 +51,11 @@
         "Obj/":true,
         "ProjectSettings/":true,
         "temp/":true,
-        "Temp/":true
+        "Temp/":true,
+        "Assets/Prefabs": true,
+        "Assets/Scenes": true,
+        "Assets/Sprites": true,
+        "Assets/TextMesh Pro": true,
+        "UserSettings/": true,
     }
 }

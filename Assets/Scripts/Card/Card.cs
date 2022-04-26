@@ -37,30 +37,45 @@ public class Card : MonoBehaviour
 
     public bool IsHighlighted { get; private set; }
     public bool IsCurrentAction { get; private set; }
+    public bool IsExecuting { get; private set; }
     public bool IsDepressed { get; private set; }
     public bool IsSelected { get; private set; }
     public bool IsDisabled { get; private set; }
 
-    public void Use()
+    public void Use(ActionType actionType)
     {
-        if (IsDisabled || Type != CardType.ACTION)
-            return;
-
-        if (!IsCurrentAction)
-            PrepareAction();
-        else
-            ExecuteAction();
+        PrepareAction(actionType);
     }
 
-    private void PrepareAction()
+    private void PrepareAction(ActionType actionType)
     {
-        IsCurrentAction = true;
+        if(!hasEffectWithActionType(actionType))
+            return;
+
         if (usableWithTypes.Count > 0)
             CardsManager.instance.Highlight(usableWithTypes);
         else
             CardsManager.instance.Highlight(new List<CardType>() { CardType.NONE });
 
         OnCardChanged();
+    }
+
+    private bool hasEffectWithActionType(ActionType actionType)
+    {
+        return cardEffects.Exists((effect) => effect.ActionType == actionType);
+    }
+
+    public List<ActionType> GetActionTypes() {
+        List<ActionType> availableTypes = new List<ActionType>();
+
+        var allTypes = Enum.GetValues(typeof(ActionType));
+        foreach (ActionType type in allTypes)
+        {
+            if(cardEffects.Exists((effect) => effect.ActionType == type))
+                availableTypes.Add(type);
+        } 
+
+        return availableTypes;
     }
 
     private void ExecuteAction()
@@ -134,7 +149,13 @@ public class Card : MonoBehaviour
         OnCardChanged();
     }
 
-    public void Select()
+    public void SelectAsAction()
+    {
+        IsCurrentAction = true;
+        OnCardChanged();
+    }
+
+    public void SelectAsTarget()
     {
         if (!IsHighlighted)
             return;

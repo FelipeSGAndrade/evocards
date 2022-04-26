@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8328967397645546731
+--- !u!1 &8697582732467752762
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5666514110263143652}
-  - component: {fileID: 2970043572651279809}
+  - component: {fileID: 5598283531056031852}
+  - component: {fileID: 8050065145174430691}
   m_Layer: 0
-  m_Name: Forest
+  m_Name: ExploreForest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5666514110263143652
+--- !u!4 &5598283531056031852
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8328967397645546731}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 8697582732467752762}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.5700564, y: 5.1656494, z: -585.96094}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2970043572651279809
+--- !u!114 &8050065145174430691
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8328967397645546731}
+  m_GameObject: {fileID: 8697582732467752762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5ccf33ff2732b3469d4ce81388f6b76, type: 3}
+  m_Script: {fileID: 11500000, guid: e64066ce59b661e4c93b3b1185610276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 
-  artwork: {fileID: 21300000, guid: ca987900f8a6f6f47a30906ca1f5c256, type: 3}
-  type: 6
-  isSingleUseDestroy: 0
-  isSingleUseDisable: 0
-  usableWithTypes: 
-  cardEffects:
-  - {fileID: 8050065145174430691, guid: ac206ccd9aa476341807cd9fefcdc46f, type: 3}
+  actionType: 0

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8670633562383256158}
   - component: {fileID: 2287953001896862587}
+  - component: {fileID: 8885304128370735766}
   m_Layer: 0
   m_Name: Fruits
   m_TagString: Untagged
@@ -43,18 +44,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ccf33ff2732b3469d4ce81388f6b76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnChange:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnCardDestroyed:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   description: 
   artwork: {fileID: 21300000, guid: ca987900f8a6f6f47a30906ca1f5c256, type: 3}
   type: 3
+  isSingleUseDestroy: 0
+  isSingleUseDisable: 0
   usableWithTypes: 
   cardEffects: []
+--- !u!114 &8885304128370735766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4999462322858545745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e64066ce59b661e4c93b3b1185610276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionType: 1

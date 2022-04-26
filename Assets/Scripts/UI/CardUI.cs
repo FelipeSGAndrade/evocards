@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -16,10 +16,8 @@ public class CardUI : MonoBehaviour
     private SpriteRenderer artworkRenderer = default;
 
     [SerializeField]
-    private CardButton actionButton = default;
-
-    [SerializeField]
     private Card card = default;
+    public Card Card => card;
 
     [SerializeField]
     private SpriteRenderer selectHighlight = default;
@@ -28,6 +26,7 @@ public class CardUI : MonoBehaviour
 
     [SerializeField]
     private SpriteRenderer lowlight = default;
+    private ActionSelector actionSelector;
 
     private bool drag = false;
     private Vector2 mouseStartDrag;
@@ -35,12 +34,15 @@ public class CardUI : MonoBehaviour
 
     void Start()
     {
-        if (card)
+        if(!card)
         {
-            this.name = card.name + "UI";
-            transform.SetParent(card.transform);
-            Display(card);
+            throw new Exception("No card for cardUI");
         }
+
+        this.name = card.name + "UI";
+        transform.SetParent(card.transform);
+        actionSelector = GetComponent<ActionSelector>();
+        Display(card);
     }
 
     void Update()
@@ -59,11 +61,6 @@ public class CardUI : MonoBehaviour
         title.text = card.name;
         artworkRenderer.sprite = card.Artwork;
 
-        if (card.Type != CardType.ACTION)
-        {
-            actionButton.Deactivate();
-        }
-
         Refresh();
         card.OnCardChanged += Refresh;
     }
@@ -80,6 +77,11 @@ public class CardUI : MonoBehaviour
             lowlight.enabled = card.IsDepressed || card.IsDisabled;
     }
 
+    public List<ActionType> GetActionTypes()
+    {
+        return card.GetActionTypes();
+    }
+
     public void OnMouseDown()
     {
         drag = true;
@@ -91,9 +93,22 @@ public class CardUI : MonoBehaviour
     {
         drag = false;
 
+        if (!HasPositionChanged())
+        {
+            if (CardsManager.instance.IsActionHappening())
+                card.SelectAsTarget();
+            else {
+                CardsManager.instance.RegisterAction(card);
+                card.SelectAsAction();
+                actionSelector.ShowSelection();
+            }
+        }
+    }
+
+    private bool HasPositionChanged()
+    {
         Vector2 currentMousePosition = Utils.GetMousePosition();
-        if (mouseStartDrag == currentMousePosition)
-            card.Select();
+        return mouseStartDrag != currentMousePosition;
     }
 
     public void ButtonClick()
@@ -101,11 +116,8 @@ public class CardUI : MonoBehaviour
         onClicked.Invoke(this);
     }
 
-    public void UseAction()
+    public void UseAction(ActionType actionType)
     {
-        if (card)
-        {
-            card.Use();
-        }
+        card.Use(actionType);
     }
 }
